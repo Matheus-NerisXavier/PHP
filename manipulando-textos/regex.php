@@ -10,5 +10,4 @@ foreach ($telefones as $telefone) {
     } else {
         echo 'Telefone invalido: ' . PHP_EOL;
     }
-
 }
