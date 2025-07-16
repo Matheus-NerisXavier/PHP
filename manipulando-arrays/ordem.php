@@ -1,18 +1,25 @@
 <?php
 
 $notas = [
-    10,
-    8,
-    9,
-    7,
-    2
+
+   [
+       'aluno' => 'Matheus',
+       'nota' => 10
+   ],
+    [
+       'aluno' => 'Ana',
+       'nota' => 6
+   ],
+    [
+       'aluno' => 'Pedro',
+       'nota' => 9
+   ],
 ];
 
-$notasOrdenas = $notas;
-sort($notasOrdenas);
+function ordenaNotas(array $nota1, array $nota2): int
+{
+    return $nota2['nota'] <=> $nota1['nota'];
+}
 
-echo 'Desordenas: ' . PHP_EOL;
+usort($notas, 'ordenaNotas');
 var_dump($notas);
-
-echo 'Ordenadas: ' . PHP_EOL;
-var_dump($notasOrdenas);
