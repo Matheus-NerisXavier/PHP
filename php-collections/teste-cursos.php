@@ -29,4 +29,3 @@ var_dump ($novoArray);
 //var_dump($novoArray);
 
 //var_dump($cursos);
-
