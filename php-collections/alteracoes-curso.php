@@ -35,3 +35,9 @@ echo  '---------------------' . PHP_EOL;
 foreach ($curso->recuperaAlunosMatriculados() as $aluno){
     echo $aluno->nome . PHP_EOL;
 }
+
+$matheusEstaMatriculado = $curso->recuperaAlunosMatriculados()->contains(New Aluno('Outro'));
+
+var_dump(
+    $matheusEstaMatriculado
+);

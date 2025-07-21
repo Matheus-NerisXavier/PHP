@@ -12,7 +12,6 @@ class Curso
         $this->filaDeEsperaDeAlunos = new SplQueue();
 //        $this->alunosMatriculados = new SplDoublyLinkedList();
         $this->alunosMatriculados = new SplObjectStorage();
-
     }
 
     public function adicionaAlteracao(string $alteracao): void
