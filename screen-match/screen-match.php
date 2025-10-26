@@ -6,15 +6,16 @@ $nomeFilme = "Top Gun - Maverick";
 $nomeFilme = "Thor: Ragnarok";
 $nomeFilme = "Se beber não case";
 
-$anoLancamento = $argv[1] ?? 2022;
+$anoLancamento = 2022;
 
-$somaDeNotas = 9;
-$somaDeNotas += 6;
-$somaDeNotas += 8;
-$somaDeNotas += 7.5;
-$somaDeNotas += 5;
+$quantidadeDeNotas = $argc - 1;
+$somaDeNotas = 0;
 
-$notaFilme = $somaDeNotas / 5;
+for ($i = 1; $i < $argc; $i++) {
+  $somaDeNotas += $argv[$i];
+}
+
+$notaFilme = $somaDeNotas / $quantidadeDeNotas;
 $planoPrime = true;
 
 $incluidoNoPlano = $planoPrime || $anoLancamento < 2020;
@@ -38,4 +39,6 @@ $genero = match ($nomeFilme) {
   default => "gênero desconhecido",
 };
 
-echo "O gênero do filme é: $genero";
+echo "O gênero do filme é: $genero\n";
+
+echo $argc;
