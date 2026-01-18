@@ -1,62 +1,42 @@
 <?php
 
-require __DIR__ . "/src/funcoes.php";
+require __DIR__ . '/src/Modelo/Genero.php';
+require __DIR__ . '/src/Modelo/Titulo.php';
+require __DIR__ . '/src/Modelo/Serie.php';
+require __DIR__ . '/src/Modelo/Filme.php';
+require __DIR__ . '/src/Calculos/CalculadoraDeMaratona.php';
 
-echo "Bem-vindo(a) ao screen match!\n";
+echo "Bem-vindo(a) ao ScreenMatch\n";
 
-$nomeFilme = "Top Gun - Maverick";
-$nomeFilme = "Thor: Ragnarok";
-$nomeFilme = "Se beber não case";
-
-$anoLancamento = 2022;
-
-$qunatidadeDeNotas = $argc - 1;
-$notas = [];
-
-for ($contador = 1; $contador < $argc; $contador++) {
-  $notas[] += (float) $argv[$contador];
-}
-  
-$notaFilme = array_sum($notas) / $qunatidadeDeNotas;
-$planoPrime = true;
-
-$incluidoNoPlano = incluidoNoPlano($planoPrime, $anoLancamento);
-
-echo "Nome do filme: " . $nomeFilme . "\n";
-echo "Nota do fime: $notaFilme\n";
-echo "Ano de lançamento: $anoLancamento\n";
-
-exibeMensagemLancamento($anoLancamento);
-
-$genero = match ($nomeFilme) {
-  "Top Gun - Maverick" => "ação",
-  "Thor: Ragnarok" => "super-herói",
-  "Se beber não case" => "comédia",
-  default => "gênero desconhecido",
-};
-
-echo "O gênero do filme é: $genero\n";
-
-$filme = criaFilme(
-  nome: "Thor: Ragnarok",
-  anoLancamento: 2021,
-  nota: 7.8,
-  genero: "super-herói"
+$filme = new Filme(
+  'Thor - Ragnarok',
+  2021,
+  Genero::SuperHeroi,
+  180,
 );
 
-echo $filme["ano"];
+$filme->avalia(10);
+$filme->avalia(6);
+$filme->avalia(7.8);
+$filme->avalia(8.2);
 
-var_dump($notas);
-sort($notas);
-var_dump($notas);
-$menorNota = min($notas);
-var_dump($menorNota);
+var_dump($filme);
 
-var_dump($filme['nome']);
-$posicaoDoisPontos = strpos($filme['nome'], ":");
-var_dump($posicaoDoisPontos);
+echo $filme->media() . PHP_EOL;
 
-var_dump(substr($filme['nome'], 0, $posicaoDoisPontos));
+echo $filme->anoLancamento . PHP_EOL;
 
-$filmeComoStringJson = json_encode($filme);
-file_put_contents(__DIR__ . '/filme.json', $filmeComoStringJson);
+$serie = new Serie('Lost', 2007, Genero::Drama, 10, 20, 30);
+
+echo $serie->anoLancamento . PHP_EOL;
+
+$serie->avalia(8);
+
+echo $serie->media() . PHP_EOL;
+
+$calculadora = new CalculadoraDeMaratona();
+$calculadora->inclui($filme);
+$calculadora->inclui($serie);
+$duracao = $calculadora->duracao();
+
+echo "Para essa maratona, você precisa de $duracao minutos";
